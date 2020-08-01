@@ -6,15 +6,11 @@ def requisitos():
         scanmap()
     except ModuleNotFoundError as b:
         print(str(b)) 
-        try:
-            os.system("pip3 install nmap")
-            os.system("pip3 install python-nmap")
-        except:
-            print("\nInstalando pip3...\n")
-            try:
-                os.system("apt-get install python3-pip")    
-            except:
-                print("instala pip3 manualmente")
+        print("\nIntentado instalar requisitos...\n" )
+        requisitos1()
+    
+            
+            
 
 def ayuda():
     ayuda = """
@@ -25,12 +21,13 @@ Parametros:
 -s [SYNC Scan]
 -f [Fragmented Scan]
 -all [Todos los parametros de escaneo]
+-requisitos [Instalar requerimientos]
 
 Ejemplo: TPC Scan = python3 portScan <ip> <port>
          UDP Scan = python3 portScan -u <ip> <port>
 
 
-Ejemplo de rango de puertos: python3 -all portScan <ip> 0-100
+Ejemplo de rango de puertos: python3 PortScan -all portScan <ip> 0-100
 
 """
     if __name__ == "__main__":
@@ -96,6 +93,8 @@ def scanmap():
             if argumento == "-all":
                 argumento3 = sys.argv[3]
                 scanmap4(argumento2, argumento3)
+            if argumento == "-requisitos":
+                requisitos1()
             else:
 
                 nm = nmap.PortScanner()
@@ -254,15 +253,15 @@ def scanmap4(argumento2, argumento3):
         print("")
         sys.exit()
 
+def requisitos1():
+    import os
+    os.system("apt-get install python3-pip")
+    os.system("pip3 install nmap")
+    os.system("pip3 install python-nmap")
+
 if __name__ == "__main__":
     requisitos()
 
 
     
-
-
-
-
-
-
 
